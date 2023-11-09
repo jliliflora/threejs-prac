@@ -14,8 +14,9 @@ class App {
 		divContainer.appendChild(renderer.domElement);
 		this._renderer = renderer;
 
-		/*scene객체를 생성하는 코드 */
+		/*scene객체를 생성하는 코드 /이 객체는 three.js 라이브러리에서 Scene클래스로 간단히 생성가능 */
 		const scene = new THREE.Scene();
+		/*그리고 이 객체를 field화 시키고 있음 다른 method에서도 참조할수있도록 했음 */
 		this._scense = scene;
 
 		this._setupCamera();
