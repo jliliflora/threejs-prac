@@ -14,6 +14,7 @@ class App {
 		divContainer.appendChild(renderer.domElement);
 		this._renderer = renderer;
 
+		/*scene객체를 생성하는 코드 */
 		const scene = new THREE.Scene();
 		this._scense = scene;
 
