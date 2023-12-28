@@ -19,9 +19,13 @@ class App {
 		/*그리고 이 객체를 field화 시키고 있음 다른 method에서도 참조할수있도록 했음 */
 		this._scense = scene;
 
+		/*카메라 객체를 구성하는 _setupCamera method호출 */
 		this._setupCamera();
+		/*광원을 설정하는 _setupLight method 호출 */
 		this._setupLight();
+		/*3차원 모델을 설정하는 _setupModel method 호출*/
 		this._setupModel();
+		/*밑줄로 시작하는 filed와 method가 있는데 이렇게 밑줄로 시작하는 이유는 이 App 클래스 내부에서만 사용되는 private filed, private method라는 의미인데 자바스크립트에서는 클래스를 정의할때 private 성격을 부여할 기능이 없음*/
 
 		window.onresize = this.resize.bond(this);
 		this.resize();
