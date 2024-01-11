@@ -32,6 +32,14 @@ class App {
 
 		requestAnimationFrame(this.render.bind(this));
 	}
+
+	_setupCamera() {
+		const width = this._divContainer.clientWidth;
+		const height = this._divContainer.clientHeight;
+		const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
+		camera.position.z = 2;
+		this._camera = camera;
+	}
 }
 
 window.onload = function () {
