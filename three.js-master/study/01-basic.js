@@ -1,4 +1,5 @@
 import * as THREE from "../build/three.module";
+import { color } from "three/nodes";
 
 class App {
 	constructor() {
@@ -39,6 +40,12 @@ class App {
 		const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
 		camera.position.z = 2;
 		this._camera = camera;
+	}
+
+	_setupLight() {
+		const color = 0xffffff;
+		const intensity = 1;
+		const light = new THREE.DirectionalLight(color, intensity);
 	}
 }
 
