@@ -31,12 +31,14 @@ class App {
 
 		/* 창 크키가 변경되면 발생하는 onesiz 이벤트에 이 클래스의 resize method를 지정하고 있음*/
 		/* resize 이벤트가 필요한 이유 : renderer나 camera는창 크기가 변경 될때마다 그 크기에 맞게 속성값을 재설정 해줘야함 */
-		/* resize 이벤트에 resize metho를 지정할때 bind를 사용해 지정하는 이유 : resize method안에서 this가 가르키는 객체가 아닌 App 클래스의 객체가 되도록 하기 위함 */
-		/* */
+		/* resize 이벤트에 resize metho를 지정할때 bind를 사용해 지정하는 이유 : resize method안에서 this가 가르키는 객체가 이벤트 객체가 아닌 App 클래스의 객체가 되도록 하기 위함 */
 		window.onresize = this.resize.bond(this);
+		/* resize method를 창 크기가 변경될 때 발생하는 이벤트와 상관없이 생성자로 호출해주고 있는데, 이렇게 함으로써 renderer나 camera의 창 크기에 맞게 알아서 설정해주게 됨*/
 		this.resize();
 
+		/* render method를 requestAnimationFrame이라는 API에 넘겨서 호출해주고 있음, render method는 실제로 3차원 그래픽 장면을 만들어 주는 method */
 		requestAnimationFrame(this.render.bind(this));
+		/* 여기서 render method를 bind를 통해서 넘겨주고 있는 이유 : render method의 코드 안에서 사용되는 this가 바로 이 app클래스의 객체를 가르키도록 하기 위함 */
 	}
 
 	_setupCamera() {
