@@ -45,13 +45,31 @@ class App {
     }
 
     _setupModel() {
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
-        const material = new THREE.MeshPhongMaterial({color: 0x44a88});
+        //PointsMaterial을 적용할 10000개의 포인트를 scene에 추가하는 코드!
+        
+        const vertices = [];
+        for(let i = 0; i < 10000; i++) {
+            const x = THREE.MathUtils.randFloatSpread(5);
+            const y = THREE.MathUtils.randFloatSpread(5);
+            const z = THREE.MathUtils.randFloatSpread(5);
 
-        const cube = new THREE.Mesh(geometry, material);
+            vertices.push(x, y, z);
+        }
 
-        this._scene.add(cube);
-        this._cube = cube;
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute(
+            "position",
+            new THREE.Float32BufferAttribute(vertices, 3)
+        );
+
+        const material = new THREE.PointsMaterial({
+            color: 0xff0000,
+            size: 5,
+            sizeAttenuation: false 
+        });
+
+        const points = new THREE.Points(geometry, material);
+        this._scene.add(points);
     }
 
     resize() {
@@ -72,8 +90,7 @@ class App {
 
     update(time) {
         time *= 0.001; //second unit
-        this._cube.rotation.x = time;
-        this._cube.rotation.y = time;
+
     }
 }
 
