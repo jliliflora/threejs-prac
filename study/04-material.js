@@ -39,7 +39,7 @@ class App {
             0.1,
             100
         );
-        camera.position.z = 7; /*카메라를 조정해서 10000개가 모두 화면에 보이도록 하려면 여기 값을 높여주면 됨 */
+        camera.position.z = 3; /*카메라를 조정해서 10000개가 모두 화면에 보이도록 하려면 여기 값을 높여주면 됨 */
         this._camera = camera;
     }
 
@@ -89,6 +89,7 @@ class App {
     }
     */
 
+    /*
     //Line, LineSegments, LineLoop 사용법
     _setupModel() {
         const vertices = [
@@ -101,12 +102,11 @@ class App {
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
         
-        /*
+        
         //LineBasicMaterial : 선에 대한 색상만 지정하는 코드
-        const material = new THREE.LineBasicMaterial({
-            color: 0xffff00
-        });
-        */
+        // const material = new THREE.LineBasicMaterial({
+        //     color: 0xffff00
+        // });
 
         //LineDashedMaterial : 선의 길이를 참조해서 재질이 적용되므로 선의 길이를 계산해줌
         const material = new THREE.LineDashedMaterial({
@@ -119,6 +119,52 @@ class App {
         const line = new THREE.LineLoop(geometry, material); //여기 변경해주면됨
         this._scene.add(line);
     }
+    */
+
+    //정육면체와 구 렌더링
+   _setupModel() {
+        //MeshBasicMaterial
+        // const material = new THREE.MeshBasicMaterial({
+        //     visible: true, //mesh가 보일지 안보일지
+        //     transparent: false, //투명도
+        //     opacity: 1, //투명도 정도
+        //     depthTest: true,
+        //     depthWrite: true,
+        //     side: THREE.FontSide,
+
+        //     color: 0xffff00, //색상변경
+        //     wireframe: false
+        // });
+
+        //MeshLambertMaterial : mesh를 구성하는 정점에서 광원의 영향을 계산하는 재질
+        // const material = new THREE.MeshLambertMaterial({
+        //     transparent: true,
+        //     opacity: 0.5,
+        //     side: THREE.DoubleSide, //FronstSide, BackSide, DoubleSide
+
+        //     color: "#d25383",
+        //     emissive: 0x555500,
+        //     wireframe: true
+        // });
+
+        //MeshPhongMaterial : mesh가 렌더링되는 픽셀 단위로 광원의 영향을 계산하는 재질
+        const material = new THREE.MeshPhongMaterial({
+            color: 0xff0000,
+            emissive: 0x00000, // 다른 광원에 영향을 받지 않는 재질 자체에서 방출하는 색상값
+            specular: 0x00000, // 광원에 의한 반사되는 색상으로 기본값은 연한 회색
+            shininess: 0,
+            flatShading: false,
+            wireframe: false
+        });
+
+        const box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
+        box.position.set(-1, 0, 0);
+        this._scene.add(box);
+
+        const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.7, 32, 32), material);
+        sphere.position.set(1, 0, 0);
+        this._scene.add(sphere);
+   }
 
     resize() {
         const width = this._divContainer.clientWidth;
