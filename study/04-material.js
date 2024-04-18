@@ -173,7 +173,7 @@ class App {
             emissive: 0x00000,
             roughness: 1,
             metalness: 0,
-            clearcoat: 0.5, //코팅 효과, 1로 갈수록 효과를 최대치로 표현
+            clearcoat: 0.5, //코팅 효과, 거칠고 금속성이 전혀 없음에도 코팅이 되서 반사효과를 줌, 1로 갈수록 효과를 최대치로 표현
             clearcoatRoughness: 0, //코팅에 대한 거칠기값, 1이 최대값
             wireframe: false,
             flatShading: false,
