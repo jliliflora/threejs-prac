@@ -148,13 +148,35 @@ class App {
         // });
 
         //MeshPhongMaterial : mesh가 렌더링되는 픽셀 단위로 광원의 영향을 계산하는 재질
-        const material = new THREE.MeshPhongMaterial({
+        // const material = new THREE.MeshPhongMaterial({
+        //     color: 0xff0000,
+        //     emissive: 0x00000, // 다른 광원에 영향을 받지 않는 재질 자체에서 방출하는 색상값
+        //     specular: 0xffff00, // 광원에 의한 반사되는 색상으로 기본값은 연한 회색
+        //     shininess: 10, //광원이 반사되는 정도
+        //     flatShading: true, //mesh를 평편하게 렌더링 할지에 대한 여부
+        //     wireframe: false
+        // });
+
+        //MeshStandardMaterial : PBR재질로 3차원 그래픽에서 가장 많이 사용하는 재질 2가지 중 하나임, 고품질의 렌더링결과를 얻을수 있음
+        // const material = new THREE.MeshStandardMaterial({
+        //     color: 0xff0000,
+        //     emissive: 0x00000,
+        //     roughness: 0.25, //거칠기, 최댓값은 1
+        //     metalness: 0.8, //금속성, 1로 갈수록 금속성이 강해짐
+        //     wireframe: false,
+        //     flatShading: false,
+        // });
+
+        //MeshPhysicalMaterial : MeshStandardMaterial보다 발전된 물리기반렌더링 재질, 코팅효과, 유리같은 효과
+        const material = new THREE.MeshPhysicalMaterial({
             color: 0xff0000,
-            emissive: 0x00000, // 다른 광원에 영향을 받지 않는 재질 자체에서 방출하는 색상값
-            specular: 0x00000, // 광원에 의한 반사되는 색상으로 기본값은 연한 회색
-            shininess: 0,
+            emissive: 0x00000,
+            roughness: 1,
+            metalness: 0,
+            clearcoat: 0.5, //코팅 효과, 1로 갈수록 효과를 최대치로 표현
+            clearcoatRoughness: 0, //코팅에 대한 거칠기값, 1이 최대값
+            wireframe: false,
             flatShading: false,
-            wireframe: false
         });
 
         const box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
