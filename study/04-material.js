@@ -121,7 +121,7 @@ class App {
     }
     */
 
-    //정육면체와 구 렌더링
+    //정육면체와 구를 활용한 Mesh 렌더링
    _setupModel() {
         //MeshBasicMaterial
         // const material = new THREE.MeshBasicMaterial({
